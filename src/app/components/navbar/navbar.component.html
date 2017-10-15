@@ -20,7 +20,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a *ngIf="!(afAuth.authState | async)" (click)="login()">Login</a></li>
-        <li><a *ngIf="afAuth.authState | async" (click)="logout()" >Logout</a></li>
+        <li><a *ngIf="(afAuth.authState | async)" (click)="logout()" >Logout</a></li>
       </ul>
     </div>
   </div>

@@ -10,7 +10,7 @@ import {Listing} from "../../model/listing";
 export class ListingsComponent implements OnInit {
   listings: Listing[];
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.firebaseService.getListings()

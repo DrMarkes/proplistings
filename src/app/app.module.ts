@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {FlashMessagesModule, FlashMessagesService} from "angular2-flash-messages";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +19,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'listings', component: ListingsComponent},
+  {path: 'listing/:id', component: ListingComponent},
   {path: 'add-listing', component: AddListingComponent},
 ];
 
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FlashMessagesModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
