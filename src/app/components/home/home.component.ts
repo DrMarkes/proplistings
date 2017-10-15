@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {FlashMessagesService} from 'angular2-flash-messages';
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +9,7 @@ import * as firebase from "firebase";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public af: AngularFireAuth,
-              public flashMessage: FlashMessagesService) { }
+  constructor(public af: AngularFireAuth) { }
 
   ngOnInit() {
   }

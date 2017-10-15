@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {AngularFireModule} from "angularfire2";
+import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {FlashMessagesModule, FlashMessagesService} from "angular2-flash-messages";
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -11,17 +13,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { AddListingComponent } from './components/add-listing/add-listing.component';
 import { EditListingComponent } from './components/edit-listing/edit-listing.component';
-import {RouterModule, Routes} from '@angular/router';
 import {firebaseConfig} from '../config/firebaseConfig';
 import {FirebaseService} from './services/firebase.service';
-import {AngularFireAuthModule} from 'angularfire2/auth';
-
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'listings', component: ListingsComponent},
-  {path: 'listing/:id', component: ListingComponent},
-  {path: 'add-listing', component: AddListingComponent},
-];
+import {RoutingModule} from './routing/routing.module';
+import {ListingsService} from './services/listings.service';
 
 @NgModule({
   declarations: [
@@ -35,14 +30,15 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     FlashMessagesModule,
-    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    RoutingModule
   ],
   providers: [
-    FirebaseService
+    { provide: ListingsService, useClass: FirebaseService}
   ],
   bootstrap: [AppComponent]
 })

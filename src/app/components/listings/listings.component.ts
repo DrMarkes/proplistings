@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FirebaseService} from "../../services/firebase.service";
+
 import {Listing} from "../../model/listing";
+import {ListingsService} from "../../services/listings.service";
 
 @Component({
   selector: 'app-listings',
@@ -10,10 +11,10 @@ import {Listing} from "../../model/listing";
 export class ListingsComponent implements OnInit {
   listings: Listing[];
 
-  constructor(public firebaseService: FirebaseService) { }
+  constructor(public listingsService: ListingsService) { }
 
   ngOnInit() {
-    this.firebaseService.getListings()
+    this.listingsService.getListings()
       .subscribe(listings => {
         console.log(listings);
         this.listings = listings;

@@ -5,5 +5,7 @@ export class Listing {
   image?: string;
   city?: string;
   owner?: string;
-  bedrooms?: string;
+  bedrooms?: number;
+  price?: string;
+  path?: string;
 }
