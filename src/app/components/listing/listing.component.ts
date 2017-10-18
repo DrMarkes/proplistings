@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import * as firebase from 'firebase';
 
 import {Listing} from '../../model/listing';
 import {ListingsService} from '../../services/listings.service';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-listing',
@@ -17,7 +17,8 @@ export class ListingComponent implements OnInit {
 
   constructor(private listingsService: ListingsService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -26,15 +27,22 @@ export class ListingComponent implements OnInit {
       .subscribe(listing => {
         this.listing = listing;
 
-      let storageRef = firebase.storage().ref();
-      let spaceRef = storageRef.child(this.listing.path);
-      spaceRef.getDownloadURL().then(url =>{
-        this.imageUrl = url;
-      })
-        .catch(error => {
-          console.log(error.message);
-        });
+        if(this.listing.path) {
+          let storageRef = firebase.storage().ref();
+          let spaceRef = storageRef.child(this.listing.path);
+          spaceRef.getDownloadURL().then(url => {
+            this.imageUrl = url;
+          })
+            .catch(error => {
+              console.log(error.message);
+            });
+        }
       });
   }
 
+  onDeleteListing() {
+    this.listingsService.deleteListing(this.id);
+
+    this.router.navigate(['/listings']);
+  }
 }

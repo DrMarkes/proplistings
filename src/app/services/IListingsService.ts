@@ -7,5 +7,9 @@ export interface IListingsService {
 
   getListingDetails(id: string): Observable<Listing>;
 
-  addListing(listing: Listing, image: File);
+  addListing(listing: Listing, image: File | null);
+
+  editListing(listing: Listing, id: string);
+
+  deleteListing(id: string);
 }

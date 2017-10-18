@@ -10,17 +10,14 @@ export abstract class ListingsService implements IListingsService{
   protected listing: Observable<Listing>;
   protected folder: string;
 
-  getListings(): Observable<Listing[]> {
-    throw new Error("Method not implemented.");
-  }
+  abstract getListings(): Observable<Listing[]>;
 
-  getListingDetails(id: string): Observable<Listing> {
-    throw new Error("Method not implemented.");
-  }
+  abstract getListingDetails(id: string): Observable<Listing>;
 
-  addListing(listing: Listing, image: File) {
-    throw new Error("Method not implemented.");
-  }
+  abstract addListing(listing: Listing, image: File | null);
 
 
+  abstract editListing(listing: Listing, id: string);
+
+  abstract deleteListing(id: string);
 }

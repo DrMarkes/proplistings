@@ -15,7 +15,6 @@ export class AddListingComponent implements OnInit {
   owner: string;
   bedrooms: number;
   type: string;
-  image: string;
   price: string;
 
   constructor(private listingsService: ListingsService,
@@ -39,6 +38,6 @@ export class AddListingComponent implements OnInit {
 
     this.listingsService.addListing(listing, image);
 
-    this.router.navigate(['listings']);
+    this.router.navigate(['/listings/']);
   }
 }

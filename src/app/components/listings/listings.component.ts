@@ -16,7 +16,6 @@ export class ListingsComponent implements OnInit {
   ngOnInit() {
     this.listingsService.getListings()
       .subscribe(listings => {
-        console.log(listings);
         this.listings = listings;
       });
   }
